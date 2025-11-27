@@ -13,18 +13,18 @@ interface ClientLayoutProps {
 }
 
 const geistSans = localFont({
-  src: "../../app/(frontend)/fonts/GeistVF.woff",
+  src: "../../app/(frontend)/fonts/Kalameh-Bold (convert.io).woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 
 const geistMono = localFont({
-  src: "../../app/(frontend)/fonts/GeistMonoVF.woff",
+  src: "../../app/(frontend)/fonts/Kalameh-Bold (convert.io).woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
 
-export default function ClientLayout({ 
+export default function ClientLayout({
   children,
   settings,
   navigationSettings,
@@ -32,22 +32,22 @@ export default function ClientLayout({
 
   const pathname = usePathname();
   if (pathname.includes('/studio')) return (children);
-  
+
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} font-geistSans antialiased grid min-h-[100dvh] grid-rows-[auto_1fr_auto]`}>
-      <Navbar 
+      <Navbar
         settings={settings}
         navigationSettings={navigationSettings}
       />
       <main className='overflow-hidden'>
         {children}
       </main>
-      <Footer 
-        settings={settings} 
+      <Footer
+        settings={settings}
         navigationSettings={navigationSettings}
       />
-      <Toaster 
-        position="bottom-right" 
+      <Toaster
+        position="bottom-right"
         toastOptions={{
           className: 'text-sm font-semibold antialiased',
           style: {
