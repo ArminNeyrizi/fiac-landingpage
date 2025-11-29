@@ -7,7 +7,7 @@ import SiteLogo from '../shared/site-logo';
 import SlideOutMenu from './slide-out-menu';
 import { usePathname } from 'next/navigation';
 import { cn, resolveHref } from '@/lib/utils';
-import { ChevronRight, Menu } from 'lucide-react';
+import { ChevronLeft, Menu } from 'lucide-react';
 import AnimatedText from '../shared/animated-text';
 import { GeneralSettingsQueryResult, NavigationSettingsQueryResult } from '../../../sanity.types';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
@@ -24,9 +24,9 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
 
   const { navbarMenuItems } = navigationSettings?.navbar ?? {};
   const { showSlideOutMenu } = navigationSettings?.slideOutMenu ?? {};
-  
+
   return (
-    <header 
+    <header
       className={cn('z-40 fixed top-0 left-0 w-full py-6 rounded-b-xl border-b border-b-gray-100 bg-white/80 backdrop-blur-lg transition-all duration-300 ease-in-out', {
         'py-4 ': hasScrolled
       })}
@@ -35,7 +35,7 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
         <SiteLogo settings={settings} />
         <div className='flex items-center gap-3'>
           <NavigationMenu className='hidden md:block'>
-            <NavigationMenuList className='space-x-8 group/nav'>
+            <NavigationMenuList className='space-x-8 space-x-reverse group/nav'>
               {navbarMenuItems?.map((item) => (
                 <React.Fragment key={item._key}>
                   {!item.isButton ? (
@@ -47,23 +47,23 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
                           </NavigationMenuTrigger>
                           <NavigationMenuContent className='min-w-[180px] text-nowrap py-3 px-3 flex flex-col gap-2 bg-white'>
                             {item.pageReferences?.map((page) => (
-                              <Link 
-                                key={page.slug} 
+                              <Link
+                                key={page.slug}
                                 href={resolveHref(page._type, page.slug ?? '') ?? '/'}
-                                className='group py-1 pl-3 pr-2 flex items-center justify-between gap-6 rounded-md border border-dashed hover:bg-gray-50'
+                                className='group py-1 ps-3 pe-2 flex items-center justify-between gap-6 rounded-md border border-dashed hover:bg-gray-50'
                               >
                                 {page.title}
-                                <ChevronRight 
-                                  size={14} 
-                                  className='text-gray-300 group-hover:-translate-x-0.5 group-hover:text-gray-500 transition-all duration-300' 
+                                <ChevronLeft
+                                  size={14}
+                                  className='text-gray-300 group-hover:-translate-x-0.5 group-hover:text-gray-500 transition-all duration-300'
                                 />
                               </Link>
                             ))}
                           </NavigationMenuContent>
                         </NavigationMenuItem>
-                      ): (
+                      ) : (
                         <NavigationMenuItem>
-                          <Link 
+                          <Link
                             href={resolveHref(item?.pageReference?._type ?? '', item?.pageReference?.slug ?? '') ?? '/'}
                             className={cn('relative overflow-hidden inline-flex transition-opacity duration-200 group-hover/nav:opacity-40 hover:!opacity-100', {
                               'hover:underline underline-offset-[38px]': !item.isButton,
@@ -78,10 +78,10 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
                         </NavigationMenuItem>
                       )}
                     </>
-                  ): (
+                  ) : (
                     <NavigationMenuItem>
-                      <Button 
-                        variant="primary" 
+                      <Button
+                        variant="primary"
                         disableIcon={true}
                         buttonType="internal"
                         pageReference={item.pageReference}
@@ -95,8 +95,8 @@ export default function Navbar({ settings, navigationSettings }: NavbarProps) {
             </NavigationMenuList>
           </NavigationMenu>
           {showSlideOutMenu && (
-            <SlideOutMenu 
-              settings={settings} 
+            <SlideOutMenu
+              settings={settings}
               navigationSettings={navigationSettings}
             >
               <button aria-label='Open menu' className='p-2.5 border border-gray-200/60 rounded-full cursor-pointer hover:bg-gray-50 transition-colors duration-300 ease-in-out'>

@@ -5365,7 +5365,7 @@
     }
   },
   {
-    "name": "navigationSettings",
+    "name": "",
     "type": "document",
     "attributes": {
       "_id": {
@@ -5378,7 +5378,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "navigationSettings"
+          "value": ""
         }
       },
       "_createdAt": {

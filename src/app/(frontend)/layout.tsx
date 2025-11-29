@@ -38,11 +38,11 @@ export default async function RootLayout({
       <InstallDemoButton />
     </Container>
   )
-  
+
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl">
       <body>
-        <ClientLayout 
+        <ClientLayout
           settings={settings}
           navigationSettings={navigationSettings}
         >
@@ -56,13 +56,13 @@ export default async function RootLayout({
           </>
         )}
         {marketingSettings?.googleAnalyticsId && (
-          <GoogleAnalytics 
-            gaId={marketingSettings.googleAnalyticsId} 
+          <GoogleAnalytics
+            gaId={marketingSettings.googleAnalyticsId}
           />
         )}
         {marketingSettings?.googleTagManagerId && (
-          <GoogleTagManager 
-            gtmId={marketingSettings?.googleTagManagerId} 
+          <GoogleTagManager
+            gtmId={marketingSettings?.googleTagManagerId}
           />
         )}
       </body>
