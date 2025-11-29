@@ -1,7 +1,7 @@
 import Link from "next/link";
 import * as React from "react";
 import { ButtonType } from "@/types";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn, getAnchorHref, resolveHref } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -35,32 +35,32 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLAnchorElement>,
-    VariantProps<typeof buttonVariants> {
-      disableIcon?: boolean;
-      pageReference?: ButtonType['buttonPageReference'];
-      externalUrl?: ButtonType['buttonExternalUrl'];
-      fileUrl?: ButtonType['buttonExternalUrl']
-      buttonType?: ButtonType['buttonType'];
-      emailAddress?: ButtonType['buttonEmailAddress'];
-      anchorLocation?: ButtonType['buttonAnchorLocation'];
-      anchorId?: ButtonType['buttonAnchorId'];
-    }
+  VariantProps<typeof buttonVariants> {
+  disableIcon?: boolean;
+  pageReference?: ButtonType['buttonPageReference'];
+  externalUrl?: ButtonType['buttonExternalUrl'];
+  fileUrl?: ButtonType['buttonExternalUrl']
+  buttonType?: ButtonType['buttonType'];
+  emailAddress?: ButtonType['buttonEmailAddress'];
+  anchorLocation?: ButtonType['buttonAnchorLocation'];
+  anchorId?: ButtonType['buttonAnchorId'];
+}
 
-const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(({ 
-  children, 
-  className, 
-  variant, 
-  size, 
+const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(({
+  children,
+  className,
+  variant,
+  size,
   width,
-  disableIcon, 
-  pageReference, 
-  externalUrl, 
+  disableIcon,
+  pageReference,
+  externalUrl,
   emailAddress,
   fileUrl,
-  buttonType, 
+  buttonType,
   anchorLocation,
   anchorId,
-  ...props 
+  ...props
 }, ref) => {
 
   switch (buttonType) {
@@ -79,9 +79,9 @@ const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(({
     case 'anchor':
       return (
         <Link
-          href={getAnchorHref({ 
-            anchorLocation: anchorLocation ?? 'currentPage', 
-            anchorId: anchorId ?? '', 
+          href={getAnchorHref({
+            anchorLocation: anchorLocation ?? 'currentPage',
+            anchorId: anchorId ?? '',
             pageReference: pageReference ?? null
           })}
           ref={ref}
@@ -93,7 +93,7 @@ const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(({
       );
     case 'external':
       return (
-        <a 
+        <a
           href={`${externalUrl}`}
           rel="noopener noreferrer" target="_blank"
           className={cn('group', buttonVariants({ variant, size, width, className }))}
@@ -103,7 +103,7 @@ const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(({
       );
     case 'fileDownload':
       return (
-        <a 
+        <a
           href={fileUrl ?? ''}
           download rel="noopener noreferrer" target="_blank"
           className={cn('group', buttonVariants({ variant, size, width, className }))}
@@ -113,7 +113,7 @@ const Button = React.forwardRef<HTMLAnchorElement, ButtonProps>(({
       );
     case 'emailAddress':
       return (
-        <a 
+        <a
           href={`mailto:${emailAddress}`}
           rel="noopener noreferrer" target="_blank"
           className={cn('group', buttonVariants({ variant, size, width, className }))}
@@ -129,5 +129,5 @@ Button.displayName = "Button";
 export { Button, buttonVariants };
 
 function ButtonIcon() {
-  return <ArrowRight size={16} className="transition duration-300 group-hover:translate-x-0.5" />
+  return <ArrowLeft size={16} className="transition duration-300 group-hover:translate-x-0.5" />
 }
